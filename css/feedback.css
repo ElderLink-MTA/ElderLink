@@ -1,0 +1,153 @@
+.panel-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.panel-container strong {
+  line-height: 20px;
+}
+
+.ratings-container {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.rating {
+  flex: 1;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  padding: 20px;
+  margin: 0px 20px;
+  margin-bottom: 20px;
+}
+
+.rating i {
+  font-size: 3rem;
+  border-radius: 50%;
+  color: #b4b4b4;
+  transition: 0.3s ease;
+}
+
+.rating:hover i,
+.rating.active i {
+  color: #fddc81;
+  background: radial-gradient(
+    circle,
+    rgb(97, 97, 114) 0%,
+    rgba(97, 97, 114) 55%,
+    rgba(255, 255, 255, 0) 56%
+  );
+  font-size: 3.5rem;
+}
+
+.rating small {
+  display: inline-block;
+  font-weight: 900;
+  margin: 10px 0 0;
+  color: #b4b4b4;
+}
+
+.rating:hover small,
+.rating.active small {
+  color: #555;
+}
+
+
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.fa-heart {
+  color: #c7b0c3;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+
+:root{
+  --primary-colour: #f8f9fa;
+  --secondary-colour: #0047ab;
+ 
+  --star-colour: hsl(38 90% 55%);
+}
+
+.container .container__items{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  gap: 1em;
+  
+  width: 45%;
+  height: 100%;
+  margin-top: 30px;
+}
+
+.container .container__items input{
+  display: none;
+}
+
+.container .container__items label{
+  width: 20%;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+
+.container .container__items label .star-stroke{
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-colour);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.container .container__items label .star-stroke .star-fill{
+  width: 70%;
+  aspect-ratio: 1;
+  background: var(--primary-colour);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.container .container__items input:hover ~ label .star-stroke,.container .container__items input:checked ~ label .star-stroke{
+  background: var(--star-colour);
+}
+
+.container .container__items input:checked ~ label .star-stroke .star-fill{
+  background: var(--star-colour);
+}
+
+.container .container__items label:hover .label-description::after{
+  content: attr(data-content);
+  position: fixed;
+  left: 0;
+  right: 0;
+  
+  margin-top: 1em;
+  margin-inline: auto;
+  
+  width: 100%;
+  height: 2em;
+  
+  color: #fff;
+  
+  text-align: center;
+  font-size: 2rem;
+  
+  transform: rotateY(180deg);
+}
+
+.ratings-container input[type="radio"] {
+    display: none;
+}
