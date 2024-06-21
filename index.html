@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link rel="stylesheet" href="css/helpers.css">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <title>ElderLink - כניסה או הרשמה</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div id="logoContainerMinimized">
+    <img src="images/elderlink-high-resolution-logo-transparent.png" alt="logo" id="logo_page" class="logo_page">
+  </div>
+  <h1 class="minimizedTitle" style="margin-bottom: 0px;">מנגישים סיוע לאוכלוסיית הגיל השלישי</h1>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <section class="container forms">
+        <div class="form login">
+          <div class="form-content">
+
+            <form action="includes/login.php" method="post" class="needs-validation" novalidate>
+              <h3 style="font-weight: bold;">התחברות</h3>
+              <div class="field input-field">
+                <input type="email" class="form-control" id="email" name="email" placeholder="דואר אלקטרוני" required>
+                <div class="invalid-tooltip" data-placement="left">
+                  אנא הקלידו דואר אלקטרוני תקין.
+                </div>
+              </div>
+              <div class="field input-field">
+                <input type="password" placeholder="סיסמה" class="password form-control" id="validationTooltipPassword"
+                  name="validationTooltipPassword" minlength="6" required>
+                <i class='bx bx-hide eye-icon' style=" direction: ltr;"></i>
+              </div>
+              <div id="errorMessage" class="alert alert-danger mt-2" style="display: none;"></div>
+              <div class="form-link">
+                <a href="#" class="forgot-pass">שכחת סיסמה?</a>
+              </div>
+              <div class="field button-field">
+                <button class="btn btn-primary" type="submit">התחברות</button>
+              </div>
+            </form>
+            <div class="form-link">
+              <span>אין לך חשבון? <a href="#" class="link signup-link">הרשמה</a></span>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- טופס הרשמה -->
+        <div class="form signup">
+
+          <div class="form-content">
+
+            <form action="includes/register.php" method="post" class="needs-validation" novalidate
+              onsubmit="submitForm(event)">
+              <div class="step" id="step1">
+                <h6>שלב 1 מתוך 3</h6>
+                <h3 style="font-weight: bold;">יצירת החשבון</h3>
+                <p>אנא הקלידו את פרטי החשבון שלכם. פרטים אלו ישמשו אותכם בעת הכניסה לחשבון.</p>
+                <div class="field input-field">
+
+                  <input type="email" class="form-control" id="email" name="email" placeholder="דואר אלקטרוני"
+                    pattern="[a-zA-Z0-9]+@[a-z]+\.[a-z]+(\.[a-z]+)?" required>
+                  <div class="invalid-tooltip">
+                    אנא הקלידו דואר אלקטרוני תקין.
+                  </div>
+                  <div class="invalid-tooltip" data-placement="left" id="emailExists" style="display:none;">
+                    דואר אלקטרוני זה כבר נמצא בשימוש.
+                    <br>
+                    במידה ונרשמת בעבר, לחץ כאן להתחברות.
+                  </div>
+                </div>
+                <div class="field input-field">
+                  <input type="password" placeholder="צור סיסמה" class="password form-control"
+                    id="validationTooltipPassword2" name="validationTooltipPassword1" minlength="6"
+                    pattern="(?=.*[a-zA-Z])(?=.*[0-9]).{6,}" required>
+                  <div class="invalid-tooltip" data-placement="left">
+                    הסיסמה חייבת להיות באורך של לפחות 6 תווים ולהכיל לפחות אות אנגלית אחת ולפחות מספר אחד
+                  </div>
+                  <i class='bx bx-hide eye-icon' onclick="hidePassword('validationTooltipPassword1')"></i>
+                </div>
+
+                <div class="field input-field">
+                  <input type="password" placeholder="וידוא סיסמה" class="password form-control"
+                    id="validationTooltipPassword1" minlength="6" onkeyup="validatePasswords()" required>
+                  <div class="invalid-tooltip" data-placement="left" id="passwordMismatch" style="display:none;">
+                    הסיסמאות לא תואמות
+                  </div>
+                  <i class='bx bx-hide eye-icon' onclick="hidePassword('validationTooltipPassword2')"></i>
+                </div>
+
+
+
+                <div class="field button-field">
+                  <button id="submitBtn" type="submit" disabled onclick="nextStep(2, event)">הבא &gt;</button>
+                </div>
+                <div class="form-link">
+                  <span>כבר יש לך חשבון? <a href="#" class="link login-link">התחברות</a></span>
+                </div>
+
+              </div>
+              <div class="step" id="step2" style="display: none;">
+                <h6>שלב 2 מתוך 3</h6>
+                <h3 style="font-weight: bold;">פרופיל משתמש</h3>
+
+                <div class="name-inputs">
+                  <div class="field input-field">
+                    <input type="text" class="form-control" id="validationTooltipFirstName"
+                      name="validationTooltipFirstName" placeholder="שם פרטי" maxlength="30" required>
+                  </div>
+                  <div class="field input-field">
+                    <input type="text" class="form-control" id="validationTooltipLastName"
+                      name="validationTooltipLastName" placeholder="שם משפחה" maxlength="30" required>
+                  </div>
+                </div>
+                <div class="name-inputs-place">
+                  <div class="field input-field">
+
+
+                    <input class="form-control" list="cities-data" id="city-choice"
+                      name="validationTooltipCity" type="text" placeholder="עיר"/>
+                    <datalist id="cities-data">
+                      <option value="">טוען רשימת ערים...</option>
+                    </datalist>
+
+
+
+                  </div>
+                  <div class="field input-field">
+                    <input type="text" class="form-control"  list="streets-data" id="street-choice"
+                      name="validationTooltipAddress" placeholder="רחוב" maxlength="30" pattern="[\u0590-\u05FF\s]+"
+                      required />
+                          <datalist id="streets-data">
+                              <option value="">
+                            </datalist>
+                  </div>
+                  <div class="field input-field w-30">
+                    <input type="text" class="form-control" id="validationTooltipAddressNum"
+                      name="validationTooltipAddressNum" placeholder="מספר רחוב" maxlength="3" pattern="[0-9]*"
+                      required >
+                  </div>
+                </div>
+            
+
+                <div class="field input-field">
+                  <input type="tel" placeholder="מספר טלפון" class="form-control" style="direction: rtl;"
+                    id="validationTooltiPhone" name="validationTooltiPhone" minlength="9" maxlength="12" required>
+                </div>
+                <div class="name-inputs">
+                  <div class="field input-field">
+                    <p style="color: gray; font-size: 14px; text-align: right; margin-bottom: 0px;">תאריך לידה</p>
+                    <input id="dateOfBirth" name="dateOfBirth" type="date" d value="תאריך לידה" required>
+                  </div>
+
+                  <div class="field input-field">
+                    <p style="color: gray; font-size: 14px; text-align: right; margin-bottom: 0px; margin-right: 5px;">
+                      מגדר</p>
+
+                    <select name="gender" id="gender">
+                      <option value="זכר">זכר</option>
+                      <option value="נקבה">נקבה</option>
+                      <option value="אחר">אחר</option>
+                    </select>
+                  </div>
+                </div>
+                <div id="form-action-btns">
+                  <button class="button prev-button" onclick="prevStep(1, event)">&lt; הקודם</button>
+                  <button class="button next-button" onclick="nextStep(3, event)">הבא &gt;</button>
+                </div>
+              </div>
+              <div class="step" id="step3" style="display: none;">
+                <h6>שלב 3 מתוך 3</h6>
+                <h3 style=" font-weight: bold;">בחירת שיוך</h3>
+                <P>הנה זה הגיע, שלב הסיום! רק נותר לנו לשאול אתכם לאיזו קבוצה אתם משתייכים?</P>
+                <div class="wrapper_rb">
+                  <input type="radio" name="select" value="elderly" id="option-1" checked>
+                  <label for="option-1" class="option option-1">
+                    <div class="button-content">
+                      <span>אני המבוגר/ת</span>
+                      <img src="images/elderly.png" alt="Adult Icon" class="icon">
+                    </div>
+                  </label>
+                  <input type="radio" name="select" value="volunteer" id="option-2">
+                  <label for="option-2" class="option option-2">
+                    <div class="button-content">
+                      <span>אני המתנדב/ת</span>
+                      <img src="images/volunteer.png" alt="Volunteer Icon" class="icon">
+                    </div>
+                  </label>
+                </div>
+                <div id="form-action-btns">
+                  <button class="button prev-button" onclick="prevStep(2, event)">&lt; הקודם</button>
+                  <button type="submit" class="button next-button" onclick="submitForm(event)">רישום</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div id="logoContainer">
+      <img src="images/elderlink-high-resolution-logo-transparent.png" alt="logo" id="logo_page" class="logo_page">
+      <h2 style="color: #ffffff;; font-weight: bold;">מנגישים סיוע לאוכלוסיית הגיל השלישי</h2>
+    </div>
+  </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+  <script src="js/sadna.js"></script>
+    <script src="js/cities_and_streets_api.js"></script>
+
+  <script src="https://cdn.enable.co.il/licenses/enable-L2324gcljoe8sb-0617/init.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="js/new_request.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    window.addEventListener('load', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get('error');
+      if (error) {
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = "הקלדת דואר אלקטרוני או סיסמה שגויים.";
+        errorMessage.style.display = 'block';
+      }
+    });
+
+    (() => {
+      'use strict'
+
+      const forms = document.querySelectorAll('.needs-validation')
+
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const forms = document.querySelectorAll(".needs-validation");
+
+      Array.from(forms).forEach((form) => {
+        form.addEventListener(
+          "submit",
+          function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+
+            form.classList.add("was-validated");
+          },
+          false
+        );
+
+        form.querySelectorAll("input, select").forEach((input) => {
+          input.addEventListener(
+            "change",
+            function () {
+              if (input.checkValidity()) {
+                input.classList.add("is-valid");
+                input.classList.remove("is-invalid");
+              } else {
+                input.classList.add("is-invalid");
+                input.classList.remove("is-valid");
+              }
+            },
+            false
+          );
+
+          input.addEventListener(
+            "blur",
+            function () {
+              if (input.checkValidity()) {
+                input.classList.add("is-valid");
+                input.classList.remove("is-invalid");
+              } else {
+                input.classList.add("is-invalid");
+                input.classList.remove("is-valid");
+              }
+            },
+            false
+          );
+        });
+      });
+    });
+
+    function nextStep(step, event) {
+      const currentStep = document.getElementById("step" + (step - 1));
+      const nextStep = document.getElementById("step" + step);
+
+      if (currentStep.querySelectorAll("[required]").length > 0) {
+        const inputs = currentStep.querySelectorAll("[required]");
+        let isValid = true;
+        inputs.forEach((input) => {
+          if (!input.checkValidity()) {
+            isValid = false;
+            input.classList.add("is-invalid");
+          } else {
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid"); 
+          }
+        });
+
+        if (!isValid) {
+          event.preventDefault();
+          event.stopPropagation();
+          return;
+        }
+      }
+
+      currentStep.style.display = "none";
+      nextStep.style.display = "block";
+
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+
+    function prevStep(step, event) {
+      document.getElementById('step' + step).style.display = 'block';
+      document.getElementById('step' + (step + 1)).style.display = 'none';
+      event.preventDefault();
+    }
+
+
+    function submitForm(event) {
+
+    }
+
+    function validatePasswords() {
+      var password1 = document.getElementById("validationTooltipPassword1").value;
+      var password2 = document.getElementById("validationTooltipPassword2").value;
+      var submitButton = document.getElementById("submitBtn");
+
+      if (password1 !== password2) {
+        document.getElementById("passwordMismatch").style.display = "block";
+        submitButton.disabled = true;
+      } else {
+        document.getElementById("passwordMismatch").style.display = "none";
+        submitButton.disabled = false;
+      }
+    }
+
+    var dateOfBirthInput = document.getElementById('dateOfBirth');
+
+    dateOfBirthInput.addEventListener('change', function () {
+      var selectedDate = new Date(this.value);
+
+      var today = new Date();
+      var age = today.getFullYear() - selectedDate.getFullYear();
+      var monthDiff = today.getMonth() - selectedDate.getMonth();
+
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < selectedDate.getDate())) {
+        age--;
+      }
+
+      if (age < 16) {
+        alert("הגיל המינימלי לרישום הינו 16.");
+        dateOfBirthInput.value = "";
+      }
+    });
+
+    document.getElementById('validationTooltiPhone').addEventListener('input', function (e) {
+      this.value = this.value.replace(/\D/g, '');
+    });
+
+    function hidePassword(passwordId) {
+      const passwordInput = document.getElementById(passwordId);
+      const eyeIcon = passwordInput.parentElement.querySelector('.eye-icon');
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.classList.remove('bx-hide');
+        eyeIcon.classList.add('bx-show');
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.classList.remove('bx-show');
+        eyeIcon.classList.add('bx-hide');
+      }
+    }
+
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '833071868869907', 
+        cookie: true,
+        xfbml: true,
+        version: 'v20.0'
+      });
+
+      FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function checkLoginState() {
+      FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+      });
+    }
+
+    function statusChangeCallback(response) {
+      if (response.status === 'connected') {
+        FB.api('/me', function (response) {
+          console.log('Successful login for: ' + response.name);
+          window.location.href = "homepage_volunteer.php"; 
+        });
+      } else {
+        console.log('User cancelled login or did not fully authorize.');
+      }
+    }
+  </script>
+
+
+</body>
+
+</html>
